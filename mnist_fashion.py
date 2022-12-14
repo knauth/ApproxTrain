@@ -4,7 +4,7 @@ import sys
 from python.keras.layers.am_convolutional import AMConv2D
 from python.keras.layers.amdenselayer import denseam
 (ds_train, ds_test), ds_info = tfds.load(
-    'fashion-mnist',
+    'fashion_mnist',
     split=['train', 'test'],
     shuffle_files=True,
     as_supervised=True,
@@ -29,18 +29,17 @@ ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 model = tf.keras.models.Sequential([
  tf.keras.layers.Input(shape=(28, 28, 1)),
  AMConv2D(filters=32, kernel_size=5, padding='same', activation='relu', mant_mul_lut=lut_file),
- #tf.keras.layers.Conv2D()
  #tf.keras.layers.Conv2D(filters=32, kernel_size=5, padding='same', activation='relu'),
  tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2),padding='same'),
 AMConv2D(filters=32, kernel_size=5, padding='same', activation='relu', mant_mul_lut=lut_file),
  #tf.keras.layers.Conv2D(filters=32, kernel_size=5, padding='same', activation='relu'),
  tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='same'),
  tf.keras.layers.Flatten(),
- #tf.keras.layers.Dense(1024, activation='relu'),
  denseam(1024, activation='relu', mant_mul_lut=lut_file),
+ #tf.keras.layers.Dense(1024, activation='relu'),
  tf.keras.layers.Dropout(0.4),
- #tf.keras.layers.Dense(10, activation='softmax'),
  denseam(10, activation='softmax', mant_mul_lut=lut_file)
+ #tf.keras.layers.Dense(10, activation='softmax'),
 ])
 model.compile(
     optimizer=tf.keras.optimizers.Adam(0.001),
