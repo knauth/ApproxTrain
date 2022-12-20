@@ -31,7 +31,7 @@ model = tf.keras.models.Sequential([
  AMConv2D(filters=32, kernel_size=5, padding='same', activation='relu', mant_mul_lut=lut_file),
  #tf.keras.layers.Conv2D(filters=32, kernel_size=5, padding='same', activation='relu'),
  tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2),padding='same'),
-AMConv2D(filters=32, kernel_size=5, padding='same', activation='relu', mant_mul_lut=lut_file),
+ AMConv2D(filters=32, kernel_size=5, padding='same', activation='relu', mant_mul_lut=lut_file),
  #tf.keras.layers.Conv2D(filters=32, kernel_size=5, padding='same', activation='relu'),
  tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='same'),
  tf.keras.layers.Flatten(),
